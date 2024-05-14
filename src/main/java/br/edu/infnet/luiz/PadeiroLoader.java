@@ -6,11 +6,13 @@ import java.io.FileReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.luiz.model.domain.Padeiro;
 import br.edu.infnet.luiz.model.service.PadeiroService;
-
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @Component
 public class PadeiroLoader implements ApplicationRunner{
 	
@@ -20,9 +22,7 @@ public class PadeiroLoader implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
-		
-		
-		FileReader file = new FileReader("Padeiro.txt");
+		FileReader file = new FileReader("arquivos/Padeiro.txt");
 		BufferedReader leitura = new BufferedReader(file);
 		
 		String linha = leitura.readLine();

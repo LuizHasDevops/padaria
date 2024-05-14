@@ -1,0 +1,1 @@
+Milk-Shake;150;20.0;false;true

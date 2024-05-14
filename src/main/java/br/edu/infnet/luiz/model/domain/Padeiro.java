@@ -10,34 +10,43 @@ public class Padeiro {
 	private List<Produto> produtos;
 	
 	public String getNome() {
-		return nome;
+
+        return nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+
+        this.nome = nome;
 	}
 	public String getCpf() {
-		return cpf;
+
+        return cpf;
 	}
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+
+        this.cpf = cpf;
 	}
 	public List<Produto> getProdutos() {
-		return produtos;
+
+        return produtos;
 	}
 	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+
+        this.produtos = produtos;
 	}
 	
 	public Integer getId() {
-		return id;
+
+        return id;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+
+        this.id = id;
 	}
 	@Override
 	public String toString() {
-		return "Padeiro [id=" + this.id + ", nome=" + this.nome + ", cpf=" + this.cpf + ", produtos=" + this.produtos + "]";
+		return String.format("%d - %s - %s - ",id,
+                                               nome,
+                                               cpf);
 	}	
-	
 
 }

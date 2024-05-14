@@ -8,33 +8,44 @@ public abstract class Produto {
 	private Integer id;
 	
 	public String getNome() {
-		return nome;
+        return this.nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+
+        this.nome = nome;
 	}
 	public int getPeso() {
-		return peso;
+
+        return this.peso;
 	}
 	public void setPeso(int peso) {
-		this.peso = peso;
+
+        this.peso = peso;
 	}
 	public float getPreco() {
-		return preco;
+
+        return this.preco;
 	}
 	public void setPreco(float preco) {
-		this.preco = preco;
+
+        this.preco = preco;
 	}
 	
 	public Integer getId() {
-		return id;
+
+        return this.id;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+
+        this.id = id;
 	}
-	@Override
+    @Override
 	public String toString() {
-		return "Produto [nome=" + nome + ", peso=" + peso + ", preco=" + preco + ", id=" + id + "]";
+		return String.format("%s - %d - %.2f - %d",
+                            this.nome,
+                            this.peso,
+                            this.preco,
+                            this.id);
 	}
 	
 	

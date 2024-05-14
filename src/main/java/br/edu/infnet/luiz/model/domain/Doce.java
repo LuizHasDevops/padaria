@@ -8,21 +8,23 @@ public class Doce extends Produto{
 	private boolean sorvete;
 	
 	public boolean isLight() {
-		return light;
+		   return this.light;
 	}
 	public void setLight(boolean light) {
-		this.light = light;
+		   this.light = light;
 	}
 	public boolean isSorvete() {
-		return sorvete;
+		   return this.sorvete;
 	}
 	public void setSorvete(boolean sorvete) {
-		this.sorvete = sorvete;
+		   this.sorvete = sorvete;
 	}
 	@Override
 	public String toString() {
-		return super.toString()+"Doce [light=" + light + ", sorvete=" + sorvete + "]";
+		return String.format("%s - %s - %s",
+                       super.toString(),
+                       this.light,
+                       this.sorvete);
 	}
-		
-	
+
 }
