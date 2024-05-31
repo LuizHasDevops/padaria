@@ -1,2 +1,6 @@
-luiz;11122233344
-matheus;55567688
+PA;luiz;11122233344
+P;frances;50;1.5;true;10
+D;Pudim;10;100.0;false;false
+PA;matheus;55567688
+P;suiço;400;2.0;false;10
+D;sorvete;10;8.0;true;true

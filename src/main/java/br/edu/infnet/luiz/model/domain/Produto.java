@@ -8,6 +8,7 @@ public abstract class Produto {
 	private Integer id;
 	
 	public String getNome() {
+
         return this.nome;
 	}
 	public void setNome(String nome) {

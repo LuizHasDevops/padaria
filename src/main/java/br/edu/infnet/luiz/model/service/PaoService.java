@@ -19,6 +19,15 @@ public class PaoService {
     }
 
     public Collection<Pao> obterLista(){
+
         return mapa.values();
+    }
+
+    public Pao obterPorId(Integer id) {
+        return mapa.get(id);
+    }
+
+    public void excluir(Integer id) {
+        mapa.remove(id);
     }
 }

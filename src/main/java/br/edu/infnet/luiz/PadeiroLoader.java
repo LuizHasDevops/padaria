@@ -2,7 +2,10 @@ package br.edu.infnet.luiz;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Arrays;
 
+import br.edu.infnet.luiz.model.domain.Doce;
+import br.edu.infnet.luiz.model.domain.Pao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -26,25 +29,59 @@ public class PadeiroLoader implements ApplicationRunner{
 		BufferedReader leitura = new BufferedReader(file);
 		
 		String linha = leitura.readLine();
+
 		String[] campos = null;
-		
+
+        Padeiro padeiro = null;
+
+		System.err.println("#padeiro");
 		while (linha != null) {
 			
 			campos = linha.split(";");
-			
-			Padeiro padeiro = new Padeiro();
-			padeiro.setNome(campos[0]);
-			padeiro.setCpf(campos[1]);
-			
-	 	    padeiroService.incluir(padeiro);
+
+            switch (campos[0].toUpperCase()){
+                case "PA":
+                    padeiro = new Padeiro();
+                    padeiro.setNome(campos[1]);
+                    padeiro.setCpf(campos[2]);
+
+                    padeiroService.incluir(padeiro);
+                    break;
+
+                case "P":
+                    Pao pao = new Pao();
+                    pao.setNome(campos[1]);
+                    pao.setPeso(Integer.valueOf(campos[2]));
+                    pao.setPreco(Float.valueOf(campos[3]));
+                    pao.setIntegral(Boolean.valueOf(campos[4]));
+                    pao.setQuantidade(Integer.valueOf(campos[5]));
+
+                    padeiro.getProdutos().add(pao);
+                    break;
+
+                case "D":
+                    Doce doce = new Doce();
+                    doce.setNome(campos[1]);
+                    doce.setPeso(Integer.valueOf(campos[2]));
+                    doce.setPreco(Float.valueOf(campos[3]));
+                    doce.setLight(Boolean.valueOf(campos[4]));
+                    doce.setSorvete(Boolean.valueOf(campos[5]));
+
+                    padeiro.getProdutos().add(doce);
+                    break;
+
+                default:
+                    System.err.println("Linha: " + Arrays.asList(campos));
+                    break;
+            }
 			
 			linha = leitura.readLine();
 		}
 		
 		System.out.println("iniciando o processamento!");
 		
-		for(Padeiro padeiro : padeiroService.obterLista()) {
-			System.out.println(padeiro);
+		for(Padeiro oPadeiro : padeiroService.obterLista()) {
+			System.out.println(oPadeiro);
 		}
 
 		System.out.println("Processamento realizado com sucesso!");

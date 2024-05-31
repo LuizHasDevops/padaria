@@ -8,16 +8,20 @@ public class Doce extends Produto{
 	private boolean sorvete;
 	
 	public boolean isLight() {
-		   return this.light;
+
+        return this.light;
 	}
 	public void setLight(boolean light) {
-		   this.light = light;
+
+        this.light = light;
 	}
 	public boolean isSorvete() {
-		   return this.sorvete;
+
+        return this.sorvete;
 	}
 	public void setSorvete(boolean sorvete) {
-		   this.sorvete = sorvete;
+
+        this.sorvete = sorvete;
 	}
 	@Override
 	public String toString() {

@@ -19,6 +19,17 @@ public class DoceService {
     }
 
     public Collection<Doce> obterLista(){
+
         return mapa.values();
+    }
+
+    public Doce obterPorId(Integer id){
+
+        return mapa.get(id);
+    }
+
+    public void excluir(Integer id){
+
+        mapa.remove(id);
     }
 }

@@ -19,6 +19,15 @@ public class PadeiroService {
 	    mapa.put(padeiro.getId(), padeiro);
 }
 	public Collection<Padeiro> obterLista(){
-		return mapa.values();
+
+        return mapa.values();
 	}
+
+    public Padeiro obterPorId(Integer id) {
+        return mapa.get(id);
+    }
+
+    public void excluir(Integer id) {
+        mapa.remove(id);
+    }
 }

@@ -1,5 +1,6 @@
 package br.edu.infnet.luiz.model.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Padeiro {
@@ -8,6 +9,9 @@ public class Padeiro {
 	private String nome;
 	private String cpf;
 	private List<Produto> produtos;
+    public Padeiro(){
+        this.produtos = new ArrayList<Produto>();
+    }
 	
 	public String getNome() {
 
@@ -46,7 +50,8 @@ public class Padeiro {
 	public String toString() {
 		return String.format("%d - %s - %s - ",id,
                                                nome,
-                                               cpf);
+                                               cpf,
+                                               produtos.size());
 	}	
 
 }

@@ -6,7 +6,8 @@ public class Pao extends Produto{
     private int quantidade;
 	
 	public boolean isIntegral() {
-		return this.integral;
+
+        return this.integral;
 	}
 	public void setIntegral(boolean integral) {
 
