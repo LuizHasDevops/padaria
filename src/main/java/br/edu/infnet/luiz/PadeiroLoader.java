@@ -6,21 +6,27 @@ import java.util.Arrays;
 
 import br.edu.infnet.luiz.model.domain.Doce;
 import br.edu.infnet.luiz.model.domain.Pao;
+import br.edu.infnet.luiz.model.service.DoceService;
+import br.edu.infnet.luiz.model.service.PaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.Ordered;
+
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.luiz.model.domain.Padeiro;
 import br.edu.infnet.luiz.model.service.PadeiroService;
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(1)
 @Component
 public class PadeiroLoader implements ApplicationRunner{
 	
 	@Autowired
 	private PadeiroService padeiroService;
+    @Autowired
+    private DoceService doceService;
+    @Autowired
+    private PaoService paoService;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -56,6 +62,10 @@ public class PadeiroLoader implements ApplicationRunner{
                     pao.setIntegral(Boolean.valueOf(campos[4]));
                     pao.setQuantidade(Integer.valueOf(campos[5]));
 
+                    pao.setPadeiro(padeiro);
+
+                    paoService.incluir(pao);
+
                     padeiro.getProdutos().add(pao);
                     break;
 
@@ -67,6 +77,8 @@ public class PadeiroLoader implements ApplicationRunner{
                     doce.setLight(Boolean.valueOf(campos[4]));
                     doce.setSorvete(Boolean.valueOf(campos[5]));
 
+                    doce.setPadeiro(padeiro);
+                    doceService.incluir(doce);
                     padeiro.getProdutos().add(doce);
                     break;
 

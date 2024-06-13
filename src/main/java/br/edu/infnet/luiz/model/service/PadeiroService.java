@@ -4,30 +4,32 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.edu.infnet.luiz.repository.PadeiroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.luiz.model.domain.Padeiro;
 
 @Service
 public class PadeiroService {
-
-	private static Map<Integer, Padeiro> mapa = new HashMap<Integer, Padeiro>();
-	private static Integer id = 0;
+    @Autowired
+	private PadeiroRepository padeiroRepository;
 	
 	public void incluir(Padeiro padeiro) {
-    	padeiro.setId(++id);
-	    mapa.put(padeiro.getId(), padeiro);
+    	padeiroRepository.save(padeiro);
 }
 	public Collection<Padeiro> obterLista(){
-
-        return mapa.values();
+        return (Collection<Padeiro>) padeiroRepository.findAll();
 	}
 
     public Padeiro obterPorId(Integer id) {
-        return mapa.get(id);
+        return padeiroRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id) {
-        mapa.remove(id);
+        padeiroRepository.deleteById(id);
+    }
+    public long obterQtde() {
+        return padeiroRepository.count();
     }
 }

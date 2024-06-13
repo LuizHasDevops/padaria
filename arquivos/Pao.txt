@@ -1,1 +1,2 @@
-frances;50;5;false;5
+frances;50;5;false;5;2
+suiço;40;4;false;4;1

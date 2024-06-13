@@ -1,35 +1,34 @@
 package br.edu.infnet.luiz.model.service;
 
 import br.edu.infnet.luiz.model.domain.Doce;
+import br.edu.infnet.luiz.repository.DoceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @Service
 public class DoceService {
 
-    private static Map<Integer, Doce> mapa = new HashMap<Integer, Doce>();
-    private static Integer id = 0;
-
+   @Autowired
+   private DoceRepository doceRepository;
     public void incluir(Doce doce){
-        doce.setId(++id);
-        mapa.put(doce.getId(), doce);
+        doceRepository.save(doce);
     }
 
     public Collection<Doce> obterLista(){
-
-        return mapa.values();
+        return (Collection<Doce>) doceRepository.findAll();
     }
 
     public Doce obterPorId(Integer id){
-
-        return mapa.get(id);
+        return doceRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id){
-
-        mapa.remove(id);
+        doceRepository.deleteById(id);
+    }
+    public long obterQtde() {
+        return doceRepository.count();
     }
 }

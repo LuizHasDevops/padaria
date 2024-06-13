@@ -1,1 +1,2 @@
-Milk-Shake;150;20.0;false;true
+Milk-Shake;150;20.0;false;true;1
+Chocolate;100;10.0;false;true;2

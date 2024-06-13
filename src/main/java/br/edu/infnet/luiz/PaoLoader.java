@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 
+import br.edu.infnet.luiz.model.domain.Padeiro;
 import br.edu.infnet.luiz.model.service.PaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.luiz.model.domain.Pao;
 
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(3)
 @Component
 public class PaoLoader implements ApplicationRunner{
 
@@ -43,6 +44,8 @@ public class PaoLoader implements ApplicationRunner{
             pao.setPreco(Float.valueOf(campos[2]));
 			pao.setIntegral(Boolean.valueOf(campos[3]));
 			pao.setQuantidade(Integer.valueOf(campos[4]));
+
+            pao.setPadeiro(new Padeiro(Integer.valueOf(campos[5])));
 			
 			paoService.incluir(pao);
 

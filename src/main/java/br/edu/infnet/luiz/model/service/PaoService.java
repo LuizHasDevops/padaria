@@ -1,6 +1,8 @@
 package br.edu.infnet.luiz.model.service;
 
 import br.edu.infnet.luiz.model.domain.Pao;
+import br.edu.infnet.luiz.repository.PaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -9,25 +11,25 @@ import java.util.Map;
 
 @Service
 public class PaoService {
-
-    private static Map<Integer, Pao> mapa = new HashMap<Integer, Pao>();
-    private static Integer id = 0;
+   @Autowired
+   private PaoRepository paoRepository;
 
     public void incluir(Pao pao){
-        pao.setId(++id);
-        mapa.put(pao.getId(), pao);
+        paoRepository.save(pao);
     }
 
     public Collection<Pao> obterLista(){
-
-        return mapa.values();
+        return (Collection<Pao>) paoRepository.findAll();
     }
 
     public Pao obterPorId(Integer id) {
-        return mapa.get(id);
+        return paoRepository.findById(id).orElse(null);
     }
 
     public void excluir(Integer id) {
-        mapa.remove(id);
+        paoRepository.deleteById(id);
+    }
+    public long obterQtde(){
+        return paoRepository.count();
     }
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 
+import br.edu.infnet.luiz.model.domain.Padeiro;
 import br.edu.infnet.luiz.model.service.DoceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 import br.edu.infnet.luiz.model.domain.Doce;
 
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(2)
 @Component
 public class DoceLoader implements ApplicationRunner{
 
@@ -42,6 +43,8 @@ public class DoceLoader implements ApplicationRunner{
             doce.setPreco(Float.valueOf(campos[2]));
 			doce.setLight(Boolean.valueOf(campos[3]));
 			doce.setSorvete(Boolean.valueOf(campos[4]));
+
+            doce.setPadeiro(new Padeiro(Integer.valueOf(campos[5])));
 			
 			doceService.incluir(doce);
 			

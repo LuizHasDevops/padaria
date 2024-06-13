@@ -1,5 +1,10 @@
 package br.edu.infnet.luiz.model.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "TPao")
 public class Pao extends Produto{
 	
 	private boolean integral;

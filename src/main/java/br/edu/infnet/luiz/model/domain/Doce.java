@@ -1,7 +1,11 @@
 package br.edu.infnet.luiz.model.domain;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "TDoce")
 public class Doce extends Produto{
 
 	private boolean light;

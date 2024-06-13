@@ -1,13 +1,35 @@
 package br.edu.infnet.luiz.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "TProduto")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Produto {
 
 	private String nome;
 	private int peso;
 	private float preco;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	public String getNome() {
+    @ManyToOne
+    @JoinColumn(name = "idPadeiro")
+    @JsonBackReference
+    private Padeiro padeiro;
+
+    public Padeiro getPadeiro(){
+        return padeiro;
+    }
+
+    public void setPadeiro(Padeiro padeiro) {
+        this.padeiro = padeiro;
+    }
+
+    public String getNome() {
 
         return this.nome;
 	}

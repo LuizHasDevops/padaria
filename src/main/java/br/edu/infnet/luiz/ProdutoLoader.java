@@ -1,16 +1,19 @@
 package br.edu.infnet.luiz;
 
 import br.edu.infnet.luiz.model.domain.Doce;
+import br.edu.infnet.luiz.model.domain.Padeiro;
 import br.edu.infnet.luiz.model.domain.Pao;
 import br.edu.infnet.luiz.model.domain.Produto;
 import br.edu.infnet.luiz.model.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+@Order(4)
 @Component
 public class ProdutoLoader implements ApplicationRunner {
 
@@ -40,6 +43,8 @@ public class ProdutoLoader implements ApplicationRunner {
                     pao.setIntegral(Boolean.valueOf(campos[4]));
                     pao.setQuantidade(Integer.valueOf(campos[5]));
 
+                    pao.setPadeiro(new Padeiro(Integer.valueOf(campos[6])));
+
                     produtoService.incluir(pao);
                     break;
 
@@ -50,6 +55,8 @@ public class ProdutoLoader implements ApplicationRunner {
                     doce.setPreco(Float.valueOf(campos[3]));
                     doce.setLight(Boolean.valueOf(campos[4]));
                     doce.setSorvete(Boolean.valueOf(campos[5]));
+
+                    doce.setPadeiro(new Padeiro(Integer.valueOf(campos[6])));
 
                     produtoService.incluir(doce);
                     break;
