@@ -32,4 +32,9 @@ public class PadeiroController {
     public void excluir(@PathVariable Integer id) {
         padeiroService.excluir(id);
     }
+
+    @GetMapping(value =  "/padeiro/{cpf}/cpf")
+    public Padeiro obterPorCPF(@PathVariable String cpf){
+        return padeiroService.obterPorCPF(cpf);
+    }
 }

@@ -30,4 +30,13 @@ public class ProdutoController {
     public void excluir(@PathVariable Integer id) {
         produtoService.excluir(id);
     }
+    @GetMapping(value =  "/produto/{peso}/peso")
+    public Produto obterPorPeso(@PathVariable int peso) {
+        return produtoService.obterPorPeso(peso);
+    }
+
+    @GetMapping(value = "/produto/{padeiroId}/lista")
+    public Collection<Produto> obterListaPorPadeiro(@PathVariable Integer padeiroId){
+        return produtoService.obterListaPorPadeiro(padeiroId);
+    }
 }

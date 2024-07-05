@@ -1,17 +1,20 @@
 package br.edu.infnet.luiz.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "TProduto")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Produto {
-
+    @NotBlank
+    @Column(name = "dsproduto")
 	private String nome;
 	private int peso;
+    @Min(value = 1, message = "O preço do produto precisa ser maior ou igual a {value}")
+    @Column(name = "vlproduto")
 	private float preco;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

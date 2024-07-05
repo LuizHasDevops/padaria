@@ -1,22 +1,20 @@
 package br.edu.infnet.luiz;
 
+import br.edu.infnet.luiz.model.domain.Doce;
+import br.edu.infnet.luiz.model.domain.Endereco;
+import br.edu.infnet.luiz.model.domain.Padeiro;
+import br.edu.infnet.luiz.model.domain.Pao;
+import br.edu.infnet.luiz.model.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Arrays;
 
-import br.edu.infnet.luiz.model.domain.Doce;
-import br.edu.infnet.luiz.model.domain.Pao;
-import br.edu.infnet.luiz.model.service.DoceService;
-import br.edu.infnet.luiz.model.service.PaoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
-
-import br.edu.infnet.luiz.model.domain.Padeiro;
-import br.edu.infnet.luiz.model.service.PadeiroService;
 @Order(1)
 @Component
 public class PadeiroLoader implements ApplicationRunner{
@@ -27,7 +25,10 @@ public class PadeiroLoader implements ApplicationRunner{
     private DoceService doceService;
     @Autowired
     private PaoService paoService;
-	
+    @Autowired
+    private EnderecoService enderecoService;
+	@Autowired
+    private ApiService apiService;
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
@@ -47,9 +48,12 @@ public class PadeiroLoader implements ApplicationRunner{
 
             switch (campos[0].toUpperCase()){
                 case "PA":
+
+                    Endereco endereco = apiService.obterPorCep(campos[3]);
                     padeiro = new Padeiro();
                     padeiro.setNome(campos[1]);
                     padeiro.setCpf(campos[2]);
+                    padeiro.setEndereco(endereco);
 
                     padeiroService.incluir(padeiro);
                     break;
@@ -63,6 +67,7 @@ public class PadeiroLoader implements ApplicationRunner{
                     pao.setQuantidade(Integer.valueOf(campos[5]));
 
                     pao.setPadeiro(padeiro);
+
 
                     paoService.incluir(pao);
 

@@ -19,17 +19,30 @@
 				<li class="nav-item"><a class="nav-link" href="/produto/listagem">Produtos</a></li>
 				<li class="nav-item"><a class="nav-link" href="/doce/listagem">Doces</a></li>
 				<li class="nav-item"><a class="nav-link" href="/pao/listagem">Paes</a></li>
-			</ul>
+				<li class="nav-item"><a class="nav-link" href="/endereco/listagem">Enderecos</a></li>
+                <li class="nav-item"><a class="nav-link" href="/estado/listagem">Estados</a></li>
+            </ul>
+            <form class="d-flex" action="/municipio/listagem" method="get">
+
+            				<select class="form-control me-2" name="uf">
+
+            				  <c:forEach var="estado" items="${estados}">
+            				  	<option value="${estado.id}">${estado.nome} - ${estado.sigla}</option>
+            				  </c:forEach>
+            				</select>
+
+            				<button class="btn btn-primary" type="submit">Municipios</button>
+            </form>
 		</div>
 	</nav>
 
 	<div class="container mt-3">
 
-		<span class="badge rounded-pill bg-primary">Padeiro:
-			${qtdePadeiro}</span> <span class="badge rounded-pill bg-secondary">Produto:
-			${qtdeProduto}</span> <span class="badge rounded-pill bg-success">Doce:
-			${qtdeDoce}</span> <span class="badge rounded-pill bg-danger">Pao:
-			${qtdePao}</span>
+		<span class="badge rounded-pill bg-primary">Padeiros:${qtdePadeiro}</span>
+        <span class="badge rounded-pill bg-secondary">Produtos:${qtdeProduto}</span>
+        <span class="badge rounded-pill bg-success">Doces:${qtdeDoce}</span>
+        <span class="badge rounded-pill bg-danger">Pao:${qtdePao}</span>
+        <span class="badge rounded-pill bg-warning">Enderecos:${qtdeEndereco}</span>
 
 		<c:if test="${not empty listagem}">
 			<h2>Padaria</h2>

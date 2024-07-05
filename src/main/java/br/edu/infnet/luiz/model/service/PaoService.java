@@ -6,16 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class PaoService {
    @Autowired
    private PaoRepository paoRepository;
 
-    public void incluir(Pao pao){
-        paoRepository.save(pao);
+    public void incluir(Pao pao) {
+        try {
+            paoRepository.save(pao);
+        } catch (Exception e) {
+            System.err.println("[ERROR] " + e.getMessage());
+        }
     }
 
     public Collection<Pao> obterLista(){
@@ -31,5 +33,8 @@ public class PaoService {
     }
     public long obterQtde(){
         return paoRepository.count();
+    }
+    public Collection<Pao> obterListaPorIntegral(Boolean integral){
+        return (Collection<Pao>) paoRepository.findByIntegral(integral);
     }
 }

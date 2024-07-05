@@ -1,14 +1,11 @@
 package br.edu.infnet.luiz.model.service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import br.edu.infnet.luiz.model.domain.Padeiro;
 import br.edu.infnet.luiz.repository.PadeiroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.infnet.luiz.model.domain.Padeiro;
+import java.util.Collection;
 
 @Service
 public class PadeiroService {
@@ -16,7 +13,12 @@ public class PadeiroService {
 	private PadeiroRepository padeiroRepository;
 	
 	public void incluir(Padeiro padeiro) {
-    	padeiroRepository.save(padeiro);
+    	try{
+            padeiroRepository.save(padeiro);
+        } catch (Exception e){
+            System.err.println("[ERROR] " + e.getMessage());
+        }
+
 }
 	public Collection<Padeiro> obterLista(){
         return (Collection<Padeiro>) padeiroRepository.findAll();
@@ -31,5 +33,8 @@ public class PadeiroService {
     }
     public long obterQtde() {
         return padeiroRepository.count();
+    }
+    public Padeiro obterPorCPF(String cpf){
+        return padeiroRepository.findByCpf(cpf);
     }
 }

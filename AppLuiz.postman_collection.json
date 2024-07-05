@@ -26,6 +26,22 @@
 					"response": []
 				},
 				{
+					"name": "produto/peso",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "produto/padeiro/lista",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "Delete",
 					"request": {
 						"method": "DELETE",
@@ -122,6 +138,27 @@
 					"request": {
 						"method": "GET",
 						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "/padeiro/{cpf}/cpf",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/padeiro/11122233344/cpf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"padeiro",
+								"11122233344",
+								"cpf"
+							]
+						}
 					},
 					"response": []
 				},
@@ -233,6 +270,26 @@
 					"response": []
 				},
 				{
+					"name": "/doce/lista/light",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/doce/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"doce",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete doce",
 					"request": {
 						"method": "DELETE",
@@ -321,6 +378,26 @@
 				},
 				{
 					"name": "/pao/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/pao/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"pao",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/pao/lista/integral",
 					"request": {
 						"method": "GET",
 						"header": [],

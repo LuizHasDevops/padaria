@@ -2,7 +2,8 @@ package br.edu.infnet.luiz.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,21 @@ public class Padeiro {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+    @NotBlank(message = "É necessário preencher o campo NOME!")
+    @Size(min = 3, max = 100, message = "O nome do vendedor deve ter entre {min} e {max} caracteres.")
 	private String nome;
+    @NotBlank(message = "É necessário preencher o campo CPF!")
+    @Column(unique = true)
 	private String cpf;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idPadeiro")
     @JsonManagedReference
 	private List<Produto> produtos;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idEndereco")
+    private Endereco endereco;
     public Padeiro(){
 
         this.produtos = new ArrayList<Produto>();
@@ -60,11 +70,21 @@ public class Padeiro {
 
         this.id = id;
 	}
-	@Override
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    @Override
 	public String toString() {
-		return String.format("%d - %s - %s - ",id,
+		return String.format("%d - %s - %s - Endereço: %s",id,
                                                nome,
                                                cpf,
+                                               endereco,
                                                produtos.size());
 	}	
 

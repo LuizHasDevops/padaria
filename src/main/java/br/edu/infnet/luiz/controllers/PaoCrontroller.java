@@ -32,4 +32,10 @@ public class PaoCrontroller {
     public void excluir(@PathVariable Integer id) {
         paoService.excluir(id);
     }
+
+    @GetMapping(value = "/pao/lista/{integral}")
+    public Collection<Pao> obterListaIntegral(@PathVariable Boolean integral){
+        return paoService.obterListaPorIntegral(integral);
+    }
+
 }
