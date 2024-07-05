@@ -3,6 +3,7 @@ package br.edu.infnet.luiz.model.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Max;
 
 @Entity
@@ -10,6 +11,16 @@ import jakarta.validation.constraints.Max;
 public class Pao extends Produto{
 	
 	private boolean integral;
+    private String calorias;
+
+    public String getCalorias() {
+        return calorias;
+    }
+
+    public void setCalorias(String calorias) {
+        this.calorias = calorias;
+    }
+
     @Max(value = 40)
     @Column(name = "qtMaxima")
     private int quantidade;
@@ -32,10 +43,11 @@ public class Pao extends Produto{
 	}
 	@Override
 	public String toString() {
-		return String.format("%s - %s - %d",
+		return String.format("%s - %s - %d, %s",
                       super.toString(),
                       this.integral,
-                      this.quantidade);
+                      this.quantidade,
+                      this.getCalorias());
 	}
 
 }

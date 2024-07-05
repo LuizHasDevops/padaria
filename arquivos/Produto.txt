@@ -1,4 +1,4 @@
 P;frances;50;1.5;true;10;1
 D;Pudim;10;100.0;false;false;2
-P;suiço;400;2.0;false;10;2
+P;suico;400;2.0;false;10;2
 D;sorvete;10;8.0;true;true;1

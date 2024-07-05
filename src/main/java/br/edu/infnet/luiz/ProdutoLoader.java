@@ -1,9 +1,7 @@
 package br.edu.infnet.luiz;
 
-import br.edu.infnet.luiz.model.domain.Doce;
-import br.edu.infnet.luiz.model.domain.Padeiro;
-import br.edu.infnet.luiz.model.domain.Pao;
-import br.edu.infnet.luiz.model.domain.Produto;
+import br.edu.infnet.luiz.model.domain.*;
+import br.edu.infnet.luiz.model.service.ApiService;
 import br.edu.infnet.luiz.model.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -13,12 +11,18 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+
+import static java.util.Objects.nonNull;
+
 @Order(4)
 @Component
 public class ProdutoLoader implements ApplicationRunner {
 
     @Autowired
     private ProdutoService produtoService;
+
+    @Autowired
+    private ApiService apiService;
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
@@ -42,6 +46,13 @@ public class ProdutoLoader implements ApplicationRunner {
                     pao.setPreco(Float.valueOf(campos[3]));
                     pao.setIntegral(Boolean.valueOf(campos[4]));
                     pao.setQuantidade(Integer.valueOf(campos[5]));
+
+                    Calorias calorias = apiService.buscaCaloria(pao.getNome());
+
+                    if (nonNull(calorias)) {
+                        pao.setCalorias(calorias.getCalorias());
+                    }
+
 
                     pao.setPadeiro(new Padeiro(Integer.valueOf(campos[6])));
 
